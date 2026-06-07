@@ -1,0 +1,77 @@
+
+
+-- Query 1: Total Sales by State
+
+SELECT l.State, SUM(o.Amount) AS Total_Sales
+FROM list_of_orders l
+JOIN order_details o ON l.Order_ID = o.Order_ID
+GROUP BY l.State
+ORDER BY Total_Sales DESC;
+
+
+
+
+-- Query 2: Monthly Revenue Trend
+
+SELECT 
+    MONTH(l.Order_Date) AS Month_Num,
+    MONTHNAME(l.Order_Date) AS Month_Name,
+    YEAR(l.Order_Date) AS Year,
+    SUM(o.Amount) AS Total_Revenue
+FROM list_of_orders l
+JOIN order_details o ON l.Order_ID = o.Order_ID
+GROUP BY YEAR(l.Order_Date), MONTH(l.Order_Date), MONTHNAME(l.Order_Date)
+ORDER BY Year, Month_Num;
+
+
+-- Query 3: Top Profitable Categories
+
+SELECT Category, 
+       SUM(Profit) AS Total_Profit
+FROM order_details
+GROUP BY Category
+ORDER BY Total_Profit DESC;
+
+
+-- Query 4: Best Performing Cities
+
+SELECT l.City, 
+       SUM(o.Amount) AS Total_Sales,
+       SUM(o.Profit) AS Total_Profit,
+       COUNT(DISTINCT l.Order_ID) AS Total_Orders
+FROM list_of_orders l
+JOIN order_details o ON l.Order_ID = o.Order_ID
+GROUP BY l.City
+ORDER BY Total_Sales DESC
+LIMIT 10;
+
+
+-- Query 5: Actual Sales vs Target
+
+SELECT 
+    o.Category,
+    st.Month_of_Order_Date,
+    SUM(o.Amount) AS Actual_Sales,
+    st.Target,
+    SUM(o.Amount) - st.Target AS Difference
+FROM order_details o
+JOIN list_of_orders l ON o.Order_ID = l.Order_ID
+JOIN sales_target st ON o.Category = st.Category 
+    AND DATE_FORMAT(l.Order_Date, '%b-%y') = st.Month_of_Order_Date
+GROUP BY o.Category, st.Month_of_Order_Date, st.Target
+ORDER BY o.Category, st.Month_of_Order_Date;
+
+
+
+-- Query 6: Sub-Category Breakdown
+
+
+SELECT 
+    Category,
+    Sub_Category,
+    SUM(Amount) AS Total_Sales,
+    SUM(Profit) AS Total_Profit,
+    SUM(Quantity) AS Total_Quantity
+FROM order_details
+GROUP BY Category, Sub_Category
+ORDER BY Category, Total_Sales DESC;

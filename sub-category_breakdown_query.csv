@@ -1,0 +1,18 @@
+Category,Sub_Category,Total_Sales,Total_Profit,Total_Quantity
+Clothing,Saree,53511.00,352.00,782
+Clothing,Trousers,30039.00,2847.00,135
+Clothing,Stole,18546.00,2559.00,671
+Clothing,Hankerchief,14608.00,2098.00,754
+Clothing,Shirt,7555.00,1131.00,271
+Clothing,T-shirt,7382.00,1500.00,305
+Clothing,Kurti,3361.00,181.00,164
+Clothing,Leggings,2106.00,260.00,186
+Clothing,Skirt,1946.00,235.00,248
+Electronics,Printers,58252.00,5964.00,291
+Electronics,Phones,46119.00,2207.00,304
+Electronics,"Electronic Games",39168.00,-1236.00,297
+Electronics,Accessories,21728.00,3559.00,262
+Furniture,Bookcases,56861.00,4888.00,297
+Furniture,Chairs,34222.00,577.00,277
+Furniture,Tables,22614.00,-4011.00,61
+Furniture,Furnishings,13484.00,844.00,310
